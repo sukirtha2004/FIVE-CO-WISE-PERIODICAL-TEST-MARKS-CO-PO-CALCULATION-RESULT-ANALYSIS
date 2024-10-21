@@ -1,0 +1,118 @@
+/* TrackerPage.css */
+
+/* Overall container */
+.tracker-container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .tracker-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .tracker-header h1 {
+    color: #333;
+    font-size: 24px;
+    text-transform: uppercase;
+  }
+  
+  /* Faculty-course information container */
+  .faculty-course {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+  }
+  
+  .input-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .input-group input {
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  /* Add student button */
+  .add-student-btn {
+    display: block;
+    width: 150px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-student-btn:hover {
+    background-color: #218838;
+  }
+  
+  /* Performance table */
+  .performance-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ccc;
+  }
+  
+  .performance-table th, 
+  .performance-table td {
+    padding: 12px 15px;
+    text-align: center;
+    border: 1px solid  #f4f4f4;
+  }
+  
+  .performance-table th {
+    background-color:#ccc;
+    ;
+    color: black;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .performance-table td input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Total column (read-only input) */
+  .performance-table td input[readonly] {
+    background-color: #e9ecef;
+    color: #495057;
+  }
+  
+  /* Table row styling */
+  .performance-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .performance-table tr:nth-child(odd) {
+    background-color: #ffffff;
+  }
+  
+  .performance-table tr:hover {
+    background-color: #f1f3f5;
+  }
+  

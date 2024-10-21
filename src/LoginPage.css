@@ -1,0 +1,17 @@
+/* CSS content as shown in the previous response */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #eff2f3;
+}
+
+/* Add the remaining CSS content from the previous response */
