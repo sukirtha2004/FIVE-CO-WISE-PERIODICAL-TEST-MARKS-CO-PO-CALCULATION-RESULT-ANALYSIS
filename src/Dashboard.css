@@ -1,10 +1,8 @@
-/* Dashboard.css */
-
 /* Container for the dashboard */
 .dashboard-container {
   display: flex;
   height: 100vh;
-  background-color: #e0e0d1; /* Background color */
+  background-color: #e0e0d1;
 }
 
 /* Sidebar styling */
@@ -23,7 +21,7 @@
 .sidebar ul li {
   padding: 10px 0;
   cursor: pointer;
-  font-weight: bold; /* Make sidebar items bold */
+  font-weight: bold;
 }
 
 /* Main content styling */
@@ -48,59 +46,51 @@
 
 /* Input container styling */
 .input-container {
+  margin-bottom: 20px;
+  width: 400px;
+}
+
+/* Box container styling */
+.box-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.box {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
-  width:300px;
-}
-
-.input-group {
-  margin-bottom: 15px;
-}
-
-.input-group label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.input-group input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-/* Chart container styling */
-.chart-container {
-  display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
-  position: relative; /* For positioning text inside the chart */
-}
-
-.chart {
-  width: 300px;
-  height: 300px;
-  border-radius: 50%; /* Make it a circle */
-  background: conic-gradient(
-    #e0f7fa 0% 25%, /* Segment 1: Level I */
-    #b2dfdb 25% 50%, /* Segment 2: Level II */
-    #80cbc4 50% 75%, /* Segment 3: Level III */
-    #4db6ac 75% 100% /* Segment 4: Below Level I */
-  );
-  position: relative; /* For positioning text inside the chart */
-}
-
-/* Segment text styling */
-.chart-segment {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* Center the text */
-  text-align: center;
-  color: #fff;
-  font-size: 16px;
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   font-weight: bold;
-  pointer-events: none; /* Prevent interaction with the text */
+  color: white;
+}
+
+.level1 {
+  background-color: #ffcc80; /* Light Orange */
+}
+
+.level2 {
+  background-color: #90caf9; /* Light Blue */
+}
+
+.level3 {
+  background-color: #a5d6a7; /* Light Green */
+}
+
+.below-level1 {
+  background-color: #ef9a9a; /* Light Red */
+}
+
+.box-label {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.box-value {
+  font-size: 24px;
 }
