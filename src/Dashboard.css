@@ -1,0 +1,96 @@
+/* Container for the dashboard */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  background-color: #e0e0d1;
+}
+
+/* Sidebar styling */
+.sidebar {
+  width: 250px;
+  background-color: #f3f3f3;
+  padding: 10px;
+  border-right: 1px solid #ccc;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 10px 0;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Main content styling */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+/* Header styling */
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.bit-logo {
+  width: 100px;
+  margin-right: 20px;
+}
+
+/* Input container styling */
+.input-container {
+  margin-bottom: 20px;
+  width: 400px;
+}
+
+/* Box container styling */
+.box-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  color: white;
+}
+
+.level1 {
+  background-color: #c78e39; /* Light Orange */
+}
+
+.level2 {
+  background-color: #4f9fe1; /* Light Blue */
+}
+
+.level3 {
+  background-color: #53de58; /* Light Green */
+}
+
+.below-level1 {
+  background-color: #f26262; /* Light Red */
+}
+
+.box-label {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.box-value {
+  font-size: 24px;
+}
