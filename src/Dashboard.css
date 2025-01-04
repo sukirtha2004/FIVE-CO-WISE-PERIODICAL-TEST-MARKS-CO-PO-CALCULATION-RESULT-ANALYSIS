@@ -71,19 +71,19 @@
 }
 
 .level1 {
-  background-color: #ffcc80; /* Light Orange */
+  background-color: #c78e39; /* Light Orange */
 }
 
 .level2 {
-  background-color: #90caf9; /* Light Blue */
+  background-color: #4f9fe1; /* Light Blue */
 }
 
 .level3 {
-  background-color: #a5d6a7; /* Light Green */
+  background-color: #53de58; /* Light Green */
 }
 
 .below-level1 {
-  background-color: #ef9a9a; /* Light Red */
+  background-color: #f26262; /* Light Red */
 }
 
 .box-label {

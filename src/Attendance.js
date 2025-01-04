@@ -1,76 +1,73 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from './AppContext';
 import './Attendance.css';
 
 function Attendance() {
-  const [courseCode, setCourseCode] = useState('');
-  const [totalStudents, setTotalStudents] = useState('');
-  const [students, setStudents] = useState([
-    { regNo: '', name: '', pt1: 'Present', pt2: 'Present', endSem: 'Present' },
-  ]);
+  const { students, setStudents, courseCode, setCourseCode, totalStudents, setTotalStudents } = useContext(AppContext);
 
-  const handleCourseCodeChange = (e) => setCourseCode(e.target.value);
-  const handleTotalStudentsChange = (e) => setTotalStudents(e.target.value);
-
-  const handleStudentChange = (index, field, value) => {
-    const newStudents = [...students];
-    newStudents[index][field] = value;
-    setStudents(newStudents);
+  // Handle attendance status change for a specific evaluation
+  const handleAttendanceChange = (index, evaluation, status) => {
+    const updatedStudents = [...students];
+    updatedStudents[index][evaluation] = status; // Add or update the attendance for the specific evaluation
+    setStudents(updatedStudents);
   };
 
+  // Add a new student row
   const addStudentRow = () => {
     setStudents([
       ...students,
-      { regNo: '', name: '', pt1: 'Present', pt2: 'Present', endSem: 'Present' },
+      {
+        regNo: '',
+        name: '',
+        periodical1: 'Absent',
+        periodical2: 'Absent',
+        endSemester: 'Absent',
+      },
     ]);
   };
 
-  const calculateAttendance = () => {
-    let presentCount = 0;
-    students.forEach((student) => {
-      if (student.pt1 === 'Present' && student.pt2 === 'Present' && student.endSem === 'Present') {
-        presentCount++;
-      }
-    });
-    return presentCount;
-  };
-
-  const getAttendanceClass = (status) => {
-    if (status === 'Present') return 'present';
-    if (status === 'Absent') return 'absent';
-    return 'default';
+  // Delete a student row
+  const deleteStudentRow = (index) => {
+    const updatedStudents = students.filter((_, i) => i !== index);
+    setStudents(updatedStudents);
   };
 
   return (
-    <div className="tracker-container">
-      <header className="tracker-header">
-        <h1>Academic Performance Tracker</h1>
+    <div className="attendance-container">
+      <header className="attendance-header">
+        <h1>Attendance Tracker</h1>
       </header>
-      <div className="faculty-course">
-        <div className="input-group">
-          <label>Course Code-Name:</label>
-          <input type="text" value={courseCode} onChange={handleCourseCodeChange} />
-        </div>
-        <div className="input-group">
-          <label>Total no.of students:</label>
-          <input type="number" value={totalStudents} onChange={handleTotalStudentsChange} />
-        </div>
-        <div className="input-group">
-          <label>Total present:</label>
-          <input type="text" value={calculateAttendance()} readOnly />
-        </div>
-        <div className="input-group">
-          <label>No. of absentees:</label>
-          <input type="text" value={totalStudents - calculateAttendance()} readOnly />
-        </div>
+
+      <div className="input-section">
+        <label>
+          Course Code:
+          <input
+            type="text"
+            value={courseCode}
+            onChange={(e) => setCourseCode(e.target.value)}
+            placeholder="Enter Course Code"
+          />
+        </label>
+        <label>
+          Total Students:
+          <input
+            type="number"
+            value={totalStudents}
+            onChange={(e) => setTotalStudents(e.target.value)}
+            placeholder="Enter Total Students"
+          />
+        </label>
       </div>
+
       <table className="attendance-table">
         <thead>
           <tr>
-            <th>Reg.No</th>
+            <th>Reg. No</th>
             <th>Student Name</th>
-            <th>PT I</th>
-            <th>PT II</th>
-            <th>END SEMESTER</th>
+            <th>Periodical I</th>
+            <th>Periodical II</th>
+            <th>End Semester</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -79,22 +76,34 @@ function Attendance() {
               <td>
                 <input
                   type="text"
+                  placeholder="Enter Reg. No"
                   value={student.regNo}
-                  onChange={(e) => handleStudentChange(index, 'regNo', e.target.value)}
+                  onChange={(e) => {
+                    const updatedStudents = [...students];
+                    updatedStudents[index].regNo = e.target.value;
+                    setStudents(updatedStudents);
+                  }}
                 />
               </td>
               <td>
                 <input
                   type="text"
+                  placeholder="Enter Student Name"
                   value={student.name}
-                  onChange={(e) => handleStudentChange(index, 'name', e.target.value)}
+                  onChange={(e) => {
+                    const updatedStudents = [...students];
+                    updatedStudents[index].name = e.target.value;
+                    setStudents(updatedStudents);
+                  }}
                 />
               </td>
               <td>
                 <select
-                  value={student.pt1}
-                  onChange={(e) => handleStudentChange(index, 'pt1', e.target.value)}
-                  className={getAttendanceClass(student.pt1)}
+                  value={student.periodical1 || 'Absent'}
+                  onChange={(e) =>
+                    handleAttendanceChange(index, 'periodical1', e.target.value)
+                  }
+                  className={student.periodical1 === 'Present' ? 'present' : 'absent'}
                 >
                   <option value="Present">Present</option>
                   <option value="Absent">Absent</option>
@@ -102,9 +111,11 @@ function Attendance() {
               </td>
               <td>
                 <select
-                  value={student.pt2}
-                  onChange={(e) => handleStudentChange(index, 'pt2', e.target.value)}
-                  className={getAttendanceClass(student.pt2)}
+                  value={student.periodical2 || 'Absent'}
+                  onChange={(e) =>
+                    handleAttendanceChange(index, 'periodical2', e.target.value)
+                  }
+                  className={student.periodical2 === 'Present' ? 'present' : 'absent'}
                 >
                   <option value="Present">Present</option>
                   <option value="Absent">Absent</option>
@@ -112,13 +123,23 @@ function Attendance() {
               </td>
               <td>
                 <select
-                  value={student.endSem}
-                  onChange={(e) => handleStudentChange(index, 'endSem', e.target.value)}
-                  className={getAttendanceClass(student.endSem)}
+                  value={student.endSemester || 'Absent'}
+                  onChange={(e) =>
+                    handleAttendanceChange(index, 'endSemester', e.target.value)
+                  }
+                  className={student.endSemester === 'Present' ? 'present' : 'absent'}
                 >
                   <option value="Present">Present</option>
                   <option value="Absent">Absent</option>
                 </select>
+              </td>
+              <td>
+                <button
+                  className="delete-button"
+                  onClick={() => deleteStudentRow(index)}
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}

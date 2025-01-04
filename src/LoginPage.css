@@ -13,5 +13,8 @@ html, body, #root {
   min-height: 100vh;
   background-color: #eff2f3;
 }
-
+.google-signin-btn{
+  width:30px;
+  height:40px;
+}
 /* Add the remaining CSS content from the previous response */
